@@ -1,10 +1,9 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 
-// Swagger configuration
 const swaggerOptions = {   
     swaggerDefinition: {
-
+        openapi: "3.0.0",
         info: {
             title: 'Food Service API',
             description: 'API documentation for the Food Service application',
@@ -32,10 +31,43 @@ const swaggerOptions = {
                         email: {
                             type: 'string',
                             description: 'User email'
+                        },
+                        password: {
+                            type: 'string',
+                            description: 'User password'
+                        },employeeId: {
+                            type: 'string',
+                            description: 'Employee ID'
+                        },
+
+                    },
+                    required: [ 'name', 'email', 'password',"employeeId"]
+                },
+                BookMeal : {
+                    type: 'object',
+                    properties: {
+                        id: {
+                            type: 'string',
+                            description: 'Meal ID'
+                        },
+                        employeeId: {
+                            type: 'string',
+                            description: 'Employee ID'
+                        },
+                        mealType: {
+                            type: 'string',
+                            description: 'Meal type'
+                        },
+                        mealCategory: {
+                            type: 'string',
+                            description: 'Meal category'
+                        },
+                        date: {
+                            type: 'string',
+                            description: 'Date'
                         }
                     },
-                    required: ['id', 'name', 'email']
-                }
+                    required: [ 'employeeId', 'mealType', 'mealCategory',"date"]}
             }
         },tags: [
             {
@@ -43,12 +75,11 @@ const swaggerOptions = {
                 description: 'User management'
             }
         ]
-    }, 
-    
+    },     
     apis: ['./src/routes/*.js'], // Path to the API docs
 };
-console.log(swaggerOptions)
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-module.exports = (app)  =>{
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-}
+
+module.exports = (app) => {
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+};

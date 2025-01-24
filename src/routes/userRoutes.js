@@ -1,5 +1,5 @@
 const express = require('express');
-const userController = require('../contollers/userController');
+const userController = require('../controllers/userController');
 const router = express.Router();
 
 /**
@@ -58,6 +58,7 @@ router.get('/users/:id', userController.getUserById);
  *   post:
  *     summary: Create a new user
  *     tags: [Users]
+ *     description: Create a new user in the database.
  *     requestBody:
  *       required: true
  *       content:
@@ -66,7 +67,7 @@ router.get('/users/:id', userController.getUserById);
  *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:
- *         description: The created user
+ *         description: User created successfully.
  *         content:
  *           application/json:
  *             schema:

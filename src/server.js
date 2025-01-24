@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const app = require('./app');
 const port = 5000;
 
@@ -8,9 +7,6 @@ const port = 5000;
 mongoose.connect('mongodb://localhost:27017/foodService', {})
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.log(err));
-
-
-
 
 // Start server
 app.listen(port, () => {
